@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const { addPatient } = require('../controllers/patient');
+const { addPatient, getPatients } = require('../controllers/patient');
 
 // router.post('/', addCategory, (req, res) => {
 //   res.send('Category Added');
@@ -10,6 +10,8 @@ const { addPatient } = require('../controllers/patient');
 router.post('/register', addPatient, (req, res) => {
   res.redirect('/productMaster');
 });
+
+router.get('/list', getPatients);
 // router.get('/getProducts', getProducts, (req, res) => {
 //   res.redirect('/productMaster');
 // });

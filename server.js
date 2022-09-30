@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Database
-mongoose.connect('mongodb://localhost:27017/medblocks', {
+mongoose.connect('mongodb://mongo_db:27017/medblocks', {
   useNewUrlParser: true,
 });
 mongoose.connection

@@ -6,8 +6,8 @@ const addPatient = async (req, res) => {
   // convert 2020-12-12 to Date
   const dateOfBirth = new Date(dob);
 
-  console.log(req.body);
-  console.log(dateOfBirth);
+  // console.log(req.body);
+  // console.log(dateOfBirth);
   // First name is required
   if (!firstName) {
     return res.status(400).json({
@@ -47,13 +47,19 @@ const addPatient = async (req, res) => {
   }
 };
 
-// const getProducts = async (req, res) => {
-//   try {
-//     const products = await Product.find({});
-//     res.render('productMaster', { productList: products });
-//   } catch (error) {
-//     res.status(500).send(error);
-//   }
-// };
+const getPatients = async (req, res) => {
+  try {
+    const patients = await Patient.find({});
+    // remove time from dob and send only date
+    patients.forEach((patient) => {
+      patient.dateOfBirth = patient.dateOfBirth.toISOString().split('T')[0];
+    });
+    res.status(200).json(patients);
 
-module.exports = { addPatient };
+    // res.render('productMaster', { productList: products });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+module.exports = { addPatient, getPatients };
